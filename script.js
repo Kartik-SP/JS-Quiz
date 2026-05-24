@@ -61,4 +61,64 @@ const quizQuestions = [
             { text: "Ag", correct: false },
         ],
     },
-    ];
+    ]; 
+
+//Quiz State Vars
+let currentQuestionIndex = 0;
+let score = 0;
+let answerDisabled = false;
+
+totalQuestionsSpan.textContent = quizQuestions.length;
+maxScoreSpan.textContent = quizQuestions.length;
+
+//Event Listeners
+startButton.addEventListener("click", startQuiz);
+restartButton.addEventListener("click", restartQuiz);
+
+function startQuiz(){
+    // reset vars
+    currentQuestionIndex = 0;
+    scoreSpan.textContent = 0;
+
+    startScreen.classList.remove("active");
+    quizScreen.classList.add("active");
+
+    showQuestion();
+}
+
+function showQuestion(){
+    // reset state
+    answerDisabled = false;
+    
+    const currentQuestion = quizQuestions[currentQuestionIndex];
+
+    currentQuestionSpan.textContent = currentQuestionIndex + 1;
+
+    const progressPercent = [currentQuestionIndex / quizQuestions.length] * 100;
+    progressBar.style.width = progressPercent + "%";
+
+    questionText.textContent = currentQuestion.question;
+
+    answersContainer.innerHTML = "";
+
+    currentQuestion.answers.forEach(answer => {
+        const button = document.createElement("button");
+        button.textContent = answer.text;
+        button.classList.add("answer-btn");
+
+
+        button.dataset.correct = answer.correct;
+
+        button.addEventListener("click", selectAnswer);
+
+        answersContainer.appendChild(button);
+    })
+}
+
+function selectAnswer(){
+    
+}
+
+function restartQuiz(){
+    console.log("Quiz restarted");
+}
