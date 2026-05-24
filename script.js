@@ -115,8 +115,36 @@ function showQuestion(){
     })
 }
 
-function selectAnswer(){
-    
+function selectAnswer(event){
+    //optimization check 
+    if(answerDisabled) return;
+    answerDisabled = true;
+
+    const selectedButton = event.target;
+    const isCorrect = selectedButton.dataset.correct === "true";
+
+    Array.from(answersContainer.children).forEach((button) => {
+        if (button.dataset.correct === "true"){
+            button.classList.add("correct");
+        } else{
+            button.classList.add("incorrect");
+        }
+    });
+
+    if(isCorrect){
+        score++;
+        scoreSpan.textContent = score;
+    }
+
+    setTimeout(() => {
+        currentQuestionIndex++;
+
+        if(currentQuestionIndex < quizQuestions.length){
+            showQuestion();
+        } else{
+            showResults();
+        }
+    }, 800)
 }
 
 function restartQuiz(){
