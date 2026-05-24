@@ -147,6 +147,31 @@ function selectAnswer(event){
     }, 800)
 }
 
+function showResults(){
+    quizScreen.classList.remove("active");
+    resultScreen.classList.add("active");
+
+    finalScoreSpan.textContent = score;
+
+    const percentage = (score / quizQuestions.length) * 100;
+
+    if(percentage === 100){
+        resultMessage.textContent = "Perfect! Nerdddddd!!";
+    }
+    else if (percentage >= 80){
+        resultMessage.textContent = "Great Job! Almost a nerddd!!";
+    }
+    else if(percentage >= 60){
+        resultMessage.textContent = "Good effort! Keep learning!!";
+    }
+    else if(percentage >= 40){
+        resultMessage.textContent = "Not bad! Almost a Monkey!!";
+    }
+    else{
+        resultMessage.textContent = "Good Job!! A Monkey can do better!!";
+    }
+}
+
 function restartQuiz(){
     console.log("Quiz restarted");
 }
