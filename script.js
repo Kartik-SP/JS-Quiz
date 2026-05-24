@@ -78,6 +78,7 @@ restartButton.addEventListener("click", restartQuiz);
 function startQuiz(){
     // reset vars
     currentQuestionIndex = 0;
+    score = 0;
     scoreSpan.textContent = 0;
 
     startScreen.classList.remove("active");
@@ -94,7 +95,7 @@ function showQuestion(){
 
     currentQuestionSpan.textContent = currentQuestionIndex + 1;
 
-    const progressPercent = [currentQuestionIndex / quizQuestions.length] * 100;
+    const progressPercent = (currentQuestionIndex / quizQuestions.length) * 100;
     progressBar.style.width = progressPercent + "%";
 
     questionText.textContent = currentQuestion.question;
@@ -126,7 +127,7 @@ function selectAnswer(event){
     Array.from(answersContainer.children).forEach((button) => {
         if (button.dataset.correct === "true"){
             button.classList.add("correct");
-        } else if (button === selectedButton) {
+        } else if (button === selectedButton && !isCorrect) {
             button.classList.add("incorrect");
         }
     });
@@ -173,7 +174,7 @@ function showResults(){
 }
 
 function restartQuiz(){
-    showResults.classList.remove("active");
+    resultScreen.classList.remove("active");
 
     startQuiz();
 }
