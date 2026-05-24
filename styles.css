@@ -62,7 +62,7 @@ body{
 
 .quiz-info{
     display: flex;
-    justify-content: space space-between;
+    justify-content: space-between;
     color: #666;
     margin-bottom: 10px;
 }
@@ -90,13 +90,13 @@ body{
     border-color: #dac0ae;
 }
 
-.answer-btn-correct{
+.correct{
     background-color: #e6fff0;
-    border-color: #a3f0c4;
+    border-color: #28a745;
     color: #28a745;
 }
 
-.answer-btn-incorrect{
+.incorrect{
     background-color: #fff0f0;
     border-color: #ffbdbd;
     color: #dc3545;
